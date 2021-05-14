@@ -152,7 +152,7 @@ class VEB:
             elif x == self.max:
                 self.max = self.index(self.high(x), self.clusters[self.high(x)].getMax())
 
-    def isPresent(self,u):
+    def isPresent(self,x):
         if x == self.min or x == self.max:	# found it as the minimum or maximum
             return True
         elif self.u <= 2:					# has not found it in the "leaf"
