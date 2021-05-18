@@ -1,26 +1,25 @@
 #include"veb.cpp"
 
 int main() {
-	int nodes, edges, src, t, d;
-	ifstream indata; // indata is like cin
-   int num; // variable for input value
-indata.open("testData.txt"); // opens the file
-	nodes=5000;
-	edges=5000;
+	int nodes, edges, source, next_dis,num;
+	ifstream indata; // indata is like cin from the text file
+
+	indata.open("testData.txt"); // Enter filename here which contains graph edge data 
+	nodes=5000; //enter number of nodes of graph here
+	edges=5000; //enter number of edges of graph here
 	//nodes=9;
 	//edges=14;
-	src=0;
+	source=4999; //enter source node here
 
 	vector< pair<int, int> > graph[nodes+1];
-	vector<int> dist(nodes+1, INT_MAX);
-	unordered_map<int, list<int> > distList;
+	vector<int> dist(nodes+1, 2147483647); 
+	unordered_map<int, list<int> > distList; 
 
-	indata >> num;
-	
-   while ( !indata.eof() ) {
-	   int i=0;
-	   int a,b,w;
-	   while(i<3){
+	indata >> num; //read first number from the first line of file
+   while ( !indata.eof() ) { //read and perfrom following statements for all numbers in file
+	   int i=0; 
+	   int a,b,w; //a=starting node of an edge; b=ending node of an edge; w=weight of an edge
+	   while(i<3){ //reading data from file and assigning them to their respective variables i.e. a,b or w 
 		if(i==0)
 			a=num;
 		else if(i==1)
@@ -28,55 +27,50 @@ indata.open("testData.txt"); // opens the file
 		else
 			w=num;
 		i=i+1;
-		indata >> num; // sets EOF flag if no value found
+		indata >> num; // now input next number
 	   }
 
-		graph[a].push_back(make_pair(b, w));
-		graph[b].push_back(make_pair(a, w));
+		graph[a].push_back(make_pair(b, w)); //append the edge in the graph i.e a to b in adjacency list representation of graph
+		graph[b].push_back(make_pair(a, w)); //we have assumed the graph is undirectional hence appending it to the edge of b too i.e b to a
    }
-   indata.close();
+   indata.close(); //close the file once all graph data has been read and stored in the graph
 
-	dist[src] = 0;
-	distList[0].push_back(src);
+	dist[source] = 0; //setting distance from source to source equal to 0
+	distList[0].push_back(source); 
 
-	veb *root = new veb;
-	root = create(root, 100);
-	insert(root, 0, 10);
+	veb *targetVeb = new veb; //create the veb object
+	targetVeb = create(targetVeb, 100); //universe size has been taken randomly i.e 100
+	insert(targetVeb, 0, 10); //insert 0 to veb created in previous line 
+	next_dis = 0; 
+	while(next_dis != -1) { //apply dijsktra for all the nodes i.e. until the next_dis is not equal to -1 i.e. there exist a successor
 
-	d = 0;
-
-	while(d != -1) {
-
-		while(!distList[d].empty()) {
-			int u = distList[d].front();
-			distList[d].pop_front();
-
+		while(!distList[next_dis].empty()) { //applying dijsktra algorithm
+			int u = distList[next_dis].front();  //starting node
+			distList[next_dis].pop_front(); 
 			for(int i = 0; i < graph[u].size(); i++) {
-				pair<int, int> info = graph[u][i];
+				pair<int, int> extract = graph[u][i]; 
+				int v = extract.first; //ending node
+				int w = extract.second; //weight of this edge (u,v)
 
-				int v = info.first;
-
-				int w = info.second;
-
-				if(dist[v] > dist[u] + w) {
+				if(dist[v] > dist[u] + w) { //update the weights of all edges
 					dist[v] = dist[u] + w;
-					insert(root, dist[v], 8);
-					distList[dist[v]].push_back(v);
+					insert(targetVeb, dist[v], 8); //insert dist[v] to veb
+					distList[dist[v]].push_back(v);//add dist[v] to the distList
 				}
 			}
 		}
-
-		d = successor(root, d);
+		next_dis = successor(targetVeb, next_dis); //check if there exist any successor if not i.e -1, then terminate and hence dijsktra has been completed for all nodes.
 	}
 	
-	int destination=0;
-	int n=dist[2];
-	for(int i = 0; i < dist.size() - 1; i++) {
+	
+	int destination=0; // variable to store the nearest node from source
+	int n=dist[2]; //variable to store the minimum distance
+	for(int i = 0; i < dist.size() - 1; i++) {  //the loop iterates over distList and finds nearest node from source by finding the minimum distance and its corresponding node ID.
 		if (dist[i]<n && n!=0 && dist[i]!=0){
 			destination=i;
 			n=dist[i];
 		}	
 	}
-	cout << "\nNearest Destination from Source: "<<src<<" is : "<<destination<<endl;
+	cout << "\nNearest Destination from Source: "<<source<<" is : "<<destination<<endl; //prints the output
 	return 0;
    }
