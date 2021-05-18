@@ -1,7 +1,8 @@
 # DS2_Project
 
 Direction to Run:
--Open main.cpp
+
+- Open main.cpp
 - in line 7; enter file name containing graph data as 
 startingNode endingNode weightOfEdge
 - in line 8; enter number of nodes
