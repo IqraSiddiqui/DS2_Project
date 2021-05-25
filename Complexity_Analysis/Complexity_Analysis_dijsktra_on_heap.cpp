@@ -116,7 +116,6 @@ struct MinHeap						//---------O(1)
     int *pos;   
     struct MinHeapNode **array;
 };
- 
 // A utility function to create a
 // new Min Heap Node
 struct MinHeapNode* newMinHeapNode(int v,
