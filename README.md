@@ -34,7 +34,7 @@ In GUI, 500 nodes data has been incorporated. It was tested by adding source nod
 Alongside this, we also implemented Dijsktra on a Min Heap to find the nearest node from a source. After performing time complexity analysis of Dijsktra on VEB and Dijsktra o Min Heap, it can be concluded that Dijsktra Algorithm performed brilliantly great with VEB i.e. with a time complexity of O(log(log U)) while with Min Heap, the time complexity of Dijsktra came out to be O(V) where V is the number of nodes in the graph. 
 Hence, it can be concluded that if VEB is used as a data structure with shortest path algorithms like Dijsktra, the results can be impressive and it can reduce the overall time complexity of such systems. 
 
-# Reference
+# References
 - https://visjs.github.io/vis-network/docs/network/
 - https://websitesetup.org/website-coding-html-css/
 - https://www.geeksforgeeks.org/dijkstras-algorithm-for-adjacency-list-representation-greedy-algo-8/
