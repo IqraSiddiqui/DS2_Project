@@ -20,3 +20,6 @@ Searching for the nearest node from a source node find its application in number
 
 # Approach
 We have selected Dijsktra Algorithm to find the nearest node as it is a single-source optimized algortithm hence is best suited for our purpose. Van Emde Boass Tree class has been implemented in veb.cpp. This class is being used in dijsktra_on_VEB.cpp, in which we have the running function that takes, source as input and returns the nearest node from this source using Dijsktra Algorithm. The GUI for this prototypte is a html webpage which displays the graph of interest and a search box and a submit button where user must enter the source node i.e. node whose nearest node one has to search for. Following are some snippets of our GUI:
+<img src="/doc/3.png" alt="Loadin Graph"/>
+<img src="/doc/1.png" alt=""/>
+<img src="/doc/2.png" alt=""/>
