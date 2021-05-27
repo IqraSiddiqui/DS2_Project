@@ -128,22 +128,22 @@ int successor(veb *root, int key) { //Function for finding successor key
 		return -1;
 	}
 
-	if(root->u == 2) { 
+	if(root->u == 2) {  //i.e. only two keys can be stored in this VEB
 		if(key == 0 && root->max == 1) {
 			return 1;
 		}
+		return -1; //otherwise no successor found
+	}
+
+	if(key < -1 || key >= root->u) {  //i.e. key does not exist in VEB then returns -1
 		return -1;
 	}
 
-	if(key < -1 || key >= root->u) { 
-		return -1;
-	}
-
-	if(key < root->min) {
+	if(key < root->min) { // if key is less than minimum of this VEB then hence return minimum as that will the successor for such key
 		return root->min;
 	}
 
-	if(root->summary == NULL) {
+	if(root->summary == NULL) { //empty VEB then do this
 		if(key < root->max) {
 			return root->max;
 		}
