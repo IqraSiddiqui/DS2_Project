@@ -21,13 +21,12 @@ We have selected Dijsktra Algorithm to find the nearest node as it is a single-s
 # Testing
 We have developed two dummy data; one of 500 nodes and other 5000 nodes graph in order to test our prototype. The graph was developed using a python script make_graph.py. 
 In order to test the back end code, following steps were performed:
-- Open main.cpp
+- Open dijsktra_on_VEB.cpp
 - in line 7; enter file name containing graph data for every edge at every line as 
 startingNode endingNode weightOfEdge
 - in line 8; enter number of nodes
 - in line 9; enter number of edges
-- in line 12; enter source node
-- Finally run
+- Finally run main.cpp
 In GUI, 500 nodes data has been incorporated. It was tested by adding source nodes in text box and using submit button. We have also tested our GUI for wrong source odes i.e. nodes that do not exist in graph. 
 
 # Conclusions
