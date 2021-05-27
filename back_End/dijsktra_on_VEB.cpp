@@ -1,19 +1,15 @@
-//Ref: https://github.com/aishwarydewangan/Dijkstra-using-van-Emde-Boas-Tree
+
 
 #include"veb.cpp"
 
-int main() {
+int dijsktra_on_VEB(int source) {
 	int nodes, edges, next_dis,num;
 	ifstream indata; // indata is like cin from the text file
 
-	indata.open("finaltest.txt");  // Enter filename here which contains graph edge data 
-	nodes=500; //enter number of nodes of graph here
-	edges=529; //enter number of edges of graph here
-	//nodes=9;
-	//edges=14;
-	for (int i=0;i<500;i++){
-	int source=i; //enter source node here
-
+	indata.open("testData.txt");  // Enter filename here which contains graph edge data 
+	nodes=14; //enter number of nodes of graph here
+	edges=9; //enter number of edges of graph here
+	
 	vector< pair<int, int> > graph[nodes+1];
 	vector<int> dist(nodes+1, 2147483647); 
 	unordered_map<int, list<int> > distList; 
@@ -74,8 +70,6 @@ int main() {
 			n=dist[i];
 		}	
 	}
-	cout << "\nNearest Destination from Source: "<<source<<" is : "<<destination<<endl; //prints the output
-	
-   }
-   return 0;
+   return destination;
 }
+
